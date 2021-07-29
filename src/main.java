@@ -226,6 +226,7 @@ public class main {
                             System.out.println("valor porcentagem: " + porctp[cont]);
                             System.out.println("quantidade de produtos: " + qntp[cont]);
                             System.out.println("Deseja alterar os dados do usuario se sim digite 1:");
+                            System.out.println("");
                             int numberifp; // numero if
                             numberifp = ler.nextInt();
                             if (numberifp != 0) {
