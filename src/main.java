@@ -142,11 +142,11 @@ public class main {
                     qnt_usuarios = ler.nextInt();
                     ler.nextLine();
                     for (int aux = varqntclientes; aux < qnt_usuarios + varqntclientes; aux++) {
-                        System.out.print("Número digite o nome: usuario: " + (aux + 1));
+                        System.out.print("Número digite o nome: usuario" + (aux + 1) + " :");
                         nome[aux] = ler.nextLine();
-                        System.out.print("Número digite o endereco: usuario: " + (aux + 1));
+                        System.out.print("Número digite o endereco: usuario" + (aux + 1) + " :");
                         endereco[aux] = ler.nextLine();
-                        System.out.print("Número digite o telefone: usuario: " + (aux + 1));
+                        System.out.print("Número digite o telefone: usuario" + (aux + 1) + " :");
                         telefone[aux] = ler.nextLine();
                     }
                     varqntclientes = varqntclientes + qnt_usuarios;
