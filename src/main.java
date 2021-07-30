@@ -9,12 +9,10 @@ public class main {
         Scanner ler = new Scanner(System.in);
         int qnt_usuarios = 0;
         // Criando um Array de ref números
-        int numero[] = new int[ref];
         String nome[] = new String[ref];// referencia String
         String endereco[] = new String[ref];// referencia String
         String telefone[] = new String[ref];// referencia String
         int refp = 200;
-        int numerop[] = new int[refp];
         String nomep[] = new String[refp];
         String descricaop[] = new String[refp];
         int valorcp[] = new int[refp];// valor compra produto
@@ -22,6 +20,7 @@ public class main {
         int qntp[] = new int[refp];
         int variavel = -1;
         int varqntclientes = 10;
+
         int varqntclientesp = 10;
         // Cadastro base de clientes 10
         nome[0] = "caio1";
@@ -137,18 +136,17 @@ public class main {
             System.out.printf("Digite um numero: ");
             int numeroEsc;
             numeroEsc = ler.nextInt();
-            ler.nextLine();
             switch (numeroEsc) {
                 case 1:
                     System.out.println("Informe quantos pessoas:");
                     qnt_usuarios = ler.nextInt();
                     ler.nextLine();
                     for (int aux = varqntclientes; aux < qnt_usuarios + varqntclientes; aux++) {
-                        System.out.print("Número digite o nome: usuario" + (aux + 1));
+                        System.out.print("Número digite o nome: usuario: " + (aux + 1));
                         nome[aux] = ler.nextLine();
-                        System.out.print("Número digite o endereco: usuario" + (aux + 1));
+                        System.out.print("Número digite o endereco: usuario: " + (aux + 1));
                         endereco[aux] = ler.nextLine();
-                        System.out.print("Número digite o telefone: usuario" + (aux + 1));
+                        System.out.print("Número digite o telefone: usuario: " + (aux + 1));
                         telefone[aux] = ler.nextLine();
                     }
                     varqntclientes = varqntclientes + qnt_usuarios;
@@ -156,9 +154,12 @@ public class main {
                 case 2:
                     String nomeB;
                     System.out.println("digite o nome por favor");
+                    ler.nextLine();
                     nomeB = ler.nextLine();
+                    boolean flag1 = false;
                     for (int cont = 0; cont < varqntclientes; cont++) {
                         if (nomeB.equalsIgnoreCase(nome[cont])) {
+                            flag1 = true;
                             System.out.println("dados do usuario:" + nomeB);
                             System.out.println("Digite o nome:");
                             System.out.println(nome[cont]);
@@ -188,6 +189,9 @@ public class main {
                             }
                         }
                     }
+                    if (flag1 == false) {
+                        System.out.println("o nome não existe: ");
+                    }
                     break;
 
                 case 3:
@@ -200,25 +204,27 @@ public class main {
                         ler.nextLine();
                         System.out.println("digite o nome do produto" + (auxp + 1) + ":");
                         nomep[auxp] = ler.nextLine();
-                        System.out.println("Digite a descricao do produto:");
+                        System.out.println("Digite a descricao do produto:" + (auxp + 1) + ":");
                         descricaop[auxp] = ler.nextLine();
-                        System.out.println("Digite o valor de compra do produto:");
+                        System.out.println("Digite o valor de compra do produto:" + (auxp + 1) + ":");
                         valorcp[auxp] = ler.nextInt();
-                        System.out.println("Digite a porcentagem de venda:");
+                        System.out.println("Digite a porcentagem de venda:" + (auxp + 1) + ":");
                         porctp[auxp] = ler.nextInt();
-                        System.out.println("Digite a quantidade em estoque:");
+                        System.out.println("Digite a quantidade em estoque:" + (auxp + 1) + ":");
                         qntp[auxp] = ler.nextInt();
                     }
-                    int qnt_usuariosp;
                     varqntclientesp = varqntclientesp + numerorefp;
                     break;
                 // Buscar produto
                 case 4:
                     String nomeBp;
+                    boolean flag3 = false;
                     System.out.println("digite o nome do produto que deseja buscar");
+                    ler.nextLine();
                     nomeBp = ler.nextLine();
                     for (int cont = 0; cont < varqntclientesp; cont++) {
                         if (nomeBp.equalsIgnoreCase(nomep[cont])) {
+                            flag3 = true;
                             System.out.println("dados do usuario:" + nomeBp);
                             System.out.println("nome: " + nomep[cont]);
                             System.out.println("descricao: " + descricaop[cont]);
@@ -226,7 +232,6 @@ public class main {
                             System.out.println("valor porcentagem: " + porctp[cont]);
                             System.out.println("quantidade de produtos: " + qntp[cont]);
                             System.out.println("Deseja alterar os dados do usuario se sim digite 1:");
-                            System.out.println("");
                             int numberifp; // numero if
                             numberifp = ler.nextInt();
                             if (numberifp != 0) {
@@ -248,14 +253,15 @@ public class main {
                                 System.out.println("digite a porcentagem de venda do produto do usuario" + cont + ":");
                                 porctpalt = ler.nextInt();
                                 porctp[cont] = porctpalt;
-                                System.out.println("digite a porcentagem de venda do produto do usuario" + cont + ":");
+                                System.out.println("digite a quantidade do produto do usuario" + cont + ":");
                                 qntpalt = ler.nextInt();
                                 qntp[cont] = qntpalt;
 
                             }
-                        } else {
-                            System.out.println("produto não exite");
                         }
+                    }
+                    if (flag3 == false) {
+                        System.out.println("produto não exite");
                     }
                     break;
                 case 5:
@@ -263,67 +269,58 @@ public class main {
                     for (int cont = 0; cont < varqntclientes; cont++) {
                         System.out.println(nome[cont]);
                     }
-
                     // escolher o nome
                     int lugarprodr = 0; // lugar em que a pessoa escolheu o produto dentro array
-                    int variavelrefere = 0;
+                    ler.nextLine();
                     System.out.println("digite o nome para fazer o cadastro de produtos:");
                     nomeB = ler.nextLine();
-                    boolean flag = false;
+                    int flag = 0;
+                    boolean flag2 = false;
                     for (int contc = 0; contc < varqntclientes; contc++) {
-                        // do {
                         if (nomeB.equalsIgnoreCase(nome[contc])) {
-                            flag = true;
-                            variavelrefere = 1;
+                            flag2 = true;
                             System.out.println("-----Lista-----");
-
                             // mostrar produto
-
                             for (int contp = 0; contp < varqntclientesp; contp++) {
                                 System.out.println("produto " + contp + ":");
                                 System.out.println(nomep[contp]);
-                                System.out.println(qntp[contp]);
+                            }
+                            // buscar produto
+                            System.out.println("digite o nome do produto:");
+                            nomeBp = ler.nextLine();
+                            for (int cont = 0; cont < varqntclientesp; cont++) {
+                                if (nomeBp.equalsIgnoreCase(nomep[cont])) {
+                                    flag = 1;
+                                    System.out.println("digite a quantidade de itens que foram comprados:");
+                                    int produtosr = 0; // produtos para retirar
+                                    produtosr = ler.nextInt();
+                                    qntp[cont] = qntp[cont] - produtosr;
+                                    if (qntp[cont] < 0) {
+                                        System.out.println(
+                                                "Digite a quantidada valida a ser retirada não potendo ser maior que o estoque");
+                                        produtosr = ler.nextInt();
+                                        qntp[cont] = qntp[lugarprodr] - produtosr;
+                                    }
+                                }
+                            }
+                            if (flag < 0) {
+                                System.out.println("o nome não existe:");
 
                             }
 
-                            break;
                         }
                     }
-                    if (flag == false) {
+                    if (flag2 == false) {
                         System.out.println("o nome não existe:");
                     }
-                    // }while(variavelrefere!=0);
 
-                    System.out.println();
-
-                    // mostrar produto
-                    /*
-                     * for(int contp=0; contp < varqntclientesp;contp++) {
-                     * System.out.println("produto "+contp+":"); System.out.println(nomep[contp]);
-                     * System.out.println(qntp[contp]);
-                     * 
-                     * } System.out.println("digite o nome do produto:"); nomeBp=ler.nextLine();
-                     * for(int cont=0; cont < varqntclientesp; cont++) {
-                     * if(nomeBp.equalsIgnoreCase(nomep[cont])) {
-                     * System.out.println("digite a quantidade de itens que foram comprados:"); int
-                     * produtosr; //produtos para retirar produtosr= ler.nextInt();
-                     * qntp[lugarprodr]=produtosr-qntp[lugarprodr]; if(qntp[lugarprodr]<0) {
-                     * System.out.
-                     * println("Digite a quantidada valida a ser retirada não potendo ser maior que o estoque"
-                     * ); produtosr= ler.nextInt(); qntp[lugarprodr]=produtosr-qntp[lugarprodr]; } }
-                     * }
-                     * 
-                     * 
-                     * // System.out.println("produto "+contc+":"); //
-                     * System.out.println(nomep[contc]); // System.out.println(porctp[contc]);
-                     */
                     break;
                 case 6:
                     System.out.println("-----Lista-----");
                     for (int cont = 0; cont < varqntclientesp; cont++) {
                         System.out.println("produto " + cont + ":");
                         System.out.println(nomep[cont]);
-                        System.out.println(porctp[cont]);
+                        System.out.println(qntp[cont]);
 
                     }
                     break;
@@ -334,6 +331,6 @@ public class main {
                     break;
             }
         } while (variavel != 0);
-
+        ler.close();
     }
 }
